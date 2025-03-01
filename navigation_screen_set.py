@@ -14,7 +14,6 @@ class navigation_set :
           print(f"Error: {json_filename} not found!")
 
       if process_id in navigation_data:
-          print(navigation_data.get(process_id))
           return navigation_data.get(process_id)
       else:
           print(f"Process {process_id} not found in JSON.")

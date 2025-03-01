@@ -1,5 +1,4 @@
-from langchain.chat_models import ChatOpenAI
-from langchain.agents import initialize_agent, AgentType
+from langchain_community.chat_models import ChatOpenAI
 import dotenv
 import os
 import json
@@ -21,7 +20,6 @@ class ComprehendAgent:
 
     def analyze_process_step(self, process_conditions,  prompt: str, summary:str) -> str:
         # Identifies the action to perform by comprehending JSON data to check for prompt requirement.
-
         screen_decider_Agent = screenDeciderAgent()
         check = screen_decider_Agent.analyze_screen(summary, prompt)
 
@@ -34,21 +32,22 @@ class ComprehendAgent:
         
         actions_prompt = self.prompt_provider.get_prompt("action_generator")
         actions_prompt = actions_prompt.format(process_analysis_results=process_analysis_results, summary=summary, prompt=prompt)
-        response = self.llm.predict(actions_prompt)
-
-        return response
+        response = self.llm.invoke(actions_prompt)
+        return response.content
 
     def per_screen_process_analyzer(self,formatted_conditions, screen_data):
 
             condion_prompt = self.prompt_provider.get_prompt("process_analyzer") 
             prompt = condion_prompt.format(screen_data=screen_data, formatted_conditions=formatted_conditions)
-            return self.llm.predict(prompt)
+            response = self.llm.invoke(prompt)
+            return response.content
 
 
     def getSimplifiedResults(self, process_analysis_results):
-        return  self.llm.predict(f'''Given screen conditions analysis in json data - {process_analysis_results}.
-                                     give me summary of conditions and results in the simple, userfriendly, readable format as following 'what is the condition checked : condition analysis result'.'
+        response = self.llm.invoke(f'''Given screen condition analysis in json data - {process_analysis_results},
+                                     Give summary of conditions and results in the simple, userfriendly, readable format like 'what is the condition checked : condition analysis result'.'
                                   ''')
+        return response.content
 
 
         

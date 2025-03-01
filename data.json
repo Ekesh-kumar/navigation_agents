@@ -1,6 +1,6 @@
  
 {
-    "login_and_view_queue": {
+    "login_and_view_claims": {
        
         "Emulator_starting_command" : "start",
        
@@ -8,50 +8,49 @@
  
           "title" : "HEALTH COST SOLUTIONS",
           "step"  : "- Select HEALTHpac 4.0 Production.",
-          "conditon" : "No conditions for check"
+          "condition" : "No conditions for check"
         },
  
         "screen2" :{
- 
             "title" : "login screen",
             "step"  :  "- login with username abc and password pass.",
-            "conditon" : "No conditions for check"
+            "condition" : "No conditions for check"
           },
  
         "screen3" :{
  
             "title" : "ACCESS WORKFLOW",
             "step"  :  "- Select the ACCESS WORKFLOW option.",
-            "conditon" : "No conditions for check"
+            "condition" : "No conditions for check"
         },
  
         "screen4" :{
  
             "title" : "queue screen",
             "step"  :  "- Select option for 'CCH-ARDOC' queue.",
-            "conditon" : "No conditions for check"
+            "condition" : "No conditions for check"
         },  
  
         "screen5" :{
  
             "title" : "claim list screen",
             "step"  :  "- Select Option for first occurrence of 'NPR' in pending list on screen.",
-            "conditon" : "No conditions for check"
+            "condition" : "No conditions for check"
         },
        
         "screen6" :{
  
             "title" : "claim detail screen",
             "step"  :  "Give the received date",
-            "conditon" : "Check if Received year is 2024"
+            "condition" : "Check if Received year is 2024"
         }
     },
        
-    "conditions_checker": {
+    "check_claims_date": {
         "screen1" :{
             "title" : "claim detail screen",
             "step"  :  "Give the received date",
-            "conditon" : "Check if Received year is 2024"
+            "condition" : "Check if Received year is 2024"
         }
     }
 }

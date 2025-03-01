@@ -1,5 +1,5 @@
 import os
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain.tools import tool
 from dotenv import load_dotenv
 from prompts import prompts_provider
@@ -18,9 +18,9 @@ class screenDeciderAgent :
         
         prompt = self.promptProviderObj.get_prompt("screen_analyzer")
         prompt = prompt.format(screen_data=screen_data, task_prompt=task_prompt)
-        response = self.llm.predict(prompt)
+        response = self.llm.invoke(prompt)
 
-        return response
+        return response.content
  
     
 

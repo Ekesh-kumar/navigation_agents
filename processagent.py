@@ -1,6 +1,4 @@
-from langchain.tools import Tool
-from langchain.agents import initialize_agent, AgentType
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 import dotenv
 import os
 import json
@@ -17,14 +15,13 @@ class processAgent:
         agent = ComprehendAgent()
         navigation_data = navigation_set()
         
-        navigation_info = navigation_data.get_navigation(navigation) 
-        print(navigation_info)      
+        navigation_info = navigation_data.get_navigation(navigation)    
          
         start_command = navigation_info.get("Emulator_starting_command")
         size = len(navigation_info)
         client = EmulatorClient() 
         screens = client.process_command(start_command)
-        for i in range(1, size+1) :
+        for i in range(1, size) :
             key = "screen" + str(i)
             actionstr = agent.analyze_process_step(navigation_info.get(key).get("condition"),navigation_info.get(key).get("step"), screens)
             actions = json.loads(actionstr)
