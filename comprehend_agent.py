@@ -35,7 +35,8 @@ class ComprehendAgent:
         actions_prompt = self.prompt_provider.get_prompt("action_generator")
         actions_prompt = actions_prompt.format(screen_data=summary, prompt=prompt)
         response = self.llm.invoke(actions_prompt)
-        return response.content
+        actions_response = self.format_outputActions(response.content)
+        return actions_response
 
     def per_screen_process_analyzer(self,formatted_conditions, screen_data):
 
@@ -46,13 +47,24 @@ class ComprehendAgent:
 
 
     def getSimplifiedResults(self, process_analysis_results):
-
         condition_prompt = self.prompt_provider.get_prompt("condition_summarizer") 
         prompt = condition_prompt.format(process_analysis_results = process_analysis_results)
         response = self.llm.invoke(prompt)
         return response.content
 
+    def format_outputActions(self, actions):
+        formatting_prompt = f'''
+                            Your are a python list extractor, your job is to strictly return python list present in the data so it can be directly used in python code without any formatting errors.
+                            Given the actions data - {actions}.
+                            If the data contains any json annotations or some extra summary, extract the list from the data and return only valid python list.
+                            Dont summarize the data only return valid python list present in data as response.
+                            Strictly follow the output format. exmaple format ["action1", "action2", "action3"]
+                            ''' 
+        response = self.llm.invoke(formatting_prompt)
     
+        return response.content
+
+
     def condition_sumamry_analyzer(self, process_analysis_results):
         condition_prompt = self.prompt_provider.get_prompt("conditions_summary_analyzer") 
         prompt = condition_prompt.format(conditions_analysis = process_analysis_results)

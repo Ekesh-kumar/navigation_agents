@@ -24,6 +24,7 @@ class processAgent:
         for i in range(1, size) :
             key = "screen" + str(i)
             actionstr = agent.analyze_process_step(navigation_info.get(key).get("condition"),navigation_info.get(key).get("step"), screens)
+            print("actions..........."+actionstr)
             actions = ast.literal_eval(actionstr.strip())
             print(actions)
             for a in range(0, len(actions)):
@@ -39,6 +40,8 @@ class processAgent:
                     
         
         return "process completed....."
+    
+
 
 if __name__ =="__main__":
     openai_api_key = os.environ.get("OPENAI_API_KEY")
