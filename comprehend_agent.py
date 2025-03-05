@@ -1,3 +1,4 @@
+import re
 from langchain_community.chat_models import ChatOpenAI
 import dotenv
 import os
@@ -16,7 +17,9 @@ class ComprehendAgent:
         self.llm = ChatOpenAI(model_name="gpt-4-turbo", temperature = 0.3, openai_api_key=openai_api_key)
         self.prompt_provider = prompts_provider()
 
+    # def analyze_process_step(self, process_conditions,  prompt: str, summary:str) -> tuple[str, int]:
     def analyze_process_step(self, process_conditions,  prompt: str, summary:str) -> str:
+        
         # Identifies the action to perform by comprehending JSON data to check for prompt requirement.
         screen_decider_Agent = screenDeciderAgent()
         check = screen_decider_Agent.analyze_screen(summary, prompt)
@@ -37,6 +40,8 @@ class ComprehendAgent:
         response = self.llm.invoke(actions_prompt)
         actions_response = self.format_outputActions(response.content)
         return actions_response
+    
+        #return  { action_type: "anything", value: actions_response }
 
     def per_screen_process_analyzer(self,formatted_conditions, screen_data):
 
