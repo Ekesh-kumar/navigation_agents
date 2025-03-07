@@ -22,7 +22,7 @@ class EmulatorClient:
             # print(f"{rest_response}")
 
             print('SLEEPING 5 seconds before next screenshot')
-            time.sleep(5)
+            time.sleep(1)
 
             try:
                 vertex_ai_response = rest_response.get("analysis")
