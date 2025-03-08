@@ -1,4 +1,3 @@
-import re
 from langchain_community.chat_models import ChatOpenAI
 import dotenv
 import os

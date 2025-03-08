@@ -1,0 +1,114 @@
+ 
+{
+    "login_and_view_claims": {
+       
+        "Emulator_starting_command" : "start",
+       
+        "screen1" :{
+ 
+          "title" : "HEALTH COST SOLUTIONS",
+          "step"  : "- Select HEALTHpac 4.0 Production.",
+          "condition" : "No conditions for check"
+        },
+ 
+        "screen2" :{
+            "title" : "login screen",
+            "step"  :  "- login with username abc and password pass.",
+            "condition" : "No conditions for check"
+          },
+ 
+        "screen3" :{
+ 
+            "title" : "ACCESS WORKFLOW",
+            "step"  :  "- Go to the ACCESS WORKFLOW option.",
+            "condition" : "No conditions for check"
+        },
+ 
+        "screen4" :{
+ 
+            "title" : "queue screen",
+            "step"  :  "- Select option for 'CCH-790136' queue.",
+            "condition" : "No conditions for check"
+        },  
+ 
+        "screen5" :{
+ 
+            "title" : "claim list screen",
+            "step"  :  "- Select Option for last occurrence of 'PV NPR' in pending list on screen.",
+            "condition" : "No conditions for check"
+        },
+       
+        "screen6" :{
+ 
+            "title" : "claim detail screen",
+            "step"  :  "Display the provider info.",
+            "condition" : "Check if Received year is 2025"
+        }
+    },
+
+    "login_and_process_queue_3_times": {
+       
+        "Emulator_starting_command" : "start",
+       
+        "screen1" :{
+ 
+          "title" : "HEALTH COST SOLUTIONS",
+          "step"  : "- Select HEALTHpac 4.0 Production.",
+          "condition" : "No conditions for check"
+        },
+ 
+        "screen2" :{
+            "title" : "login screen",
+            "step"  :  "- login with username abc and password pass.",
+            "condition" : "No conditions for check"
+          },
+ 
+        "screen3" :{
+ 
+            "title" : "ACCESS WORKFLOW",
+            "step"  :  "- Select the ACCESS WORKFLOW option.",
+            "condition" : "No conditions for check"
+        },
+ 
+        "screen4" :{
+            "title" : "queue screen",
+            "step"  :  "- Go to 'CCH-ARDOC' queue.",
+            "condition" : "No conditions for check"
+        },  
+ 
+        "screen5" :{
+            "title" : "claim list screen",
+            "step"  :  "- Select Option for first occurrence of 'PV NPR' in pending list on screen.",
+            "condition" : "No conditions for check"
+        },
+       
+        "screen6" :{
+            "title" : "claim detail screen",
+            "step"  :  "Display the provider info, Press BACK",
+            "condition" : "Check if Received year is 2025"
+        },
+        "screen7" :{
+                 "title" : "claim list screen",
+                 "step" : "REPEAT FROM SCREEN5 3 Times",
+                 "condition" : "No conditions for check"
+        }
+    },
+       
+    "validate_claim_screen_and_select_options": {
+        "Emulator_starting_command" : "A",
+        "screen1" :{
+            "title" : "claim detail screen",
+            "step"  :  "Display Provider details,  Description, Plan ID, and check if Image Available or not",
+            "condition" : "Check if net payment is 660.83"
+        }
+    },
+
+    "validate_claims_screen_with_conditions": {
+        "Emulator_starting_command" : "A",
+        "screen1" :{
+            "title" : "claim detail screen",
+            "step"  :  "Display Provider details,  Description, Plan ID, and check if Image Available or not",
+            "condition" : "Check if net payment is 660.83"
+        }
+    }
+}
